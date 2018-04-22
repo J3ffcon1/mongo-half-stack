@@ -56,6 +56,22 @@ describe('Mongo testing', () => {
             });
     });
 
+    it('updates a videogame', () => {
+        night.developer = 'League of Australians';
+        
+        return chai.request(app)
+            .put(`/videogames/${night._id}`)
+            .send(night)
+            .then(() => {
+                return chai.request(app)
+                    .get(`/videogames/${night._id}`);
+            })
+            .then(({ body }) => {
+                assert.deepEqual(body, night);
+            });
+    });
+});
 
 
-}); 
+
+ 
