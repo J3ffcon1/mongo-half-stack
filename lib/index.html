@@ -9,17 +9,6 @@
 </head>
 
 <body>
-    <ul id="Videogames I'm playing"></ul>
-    <script>
-        fetch('/videogames')
-            .then(response => response.json())
-            .then(videogames => {
-                const ul = document.getElementById('videogames');
-                videogames.forEach(videogames => {
-                    const li = document.createElement('li');
-                    ul.appendChild(li);
-                });
-            });
-    </script>
+    <h1>Videogame database routes</h1>
 </body>
 </html
