@@ -70,6 +70,21 @@ describe('Mongo testing', () => {
                 assert.deepEqual(body, night);
             });
     });
+
+    it('deletes a videogame', () => {
+        return chai.request(app)
+            .del(`/videogames/${night._id}`)
+            .then(() => {
+                return chai.request(app)
+                    .get('/videogames');
+            })
+            .then(({ body }) => {
+                assert.deepEqual(body, [armello]);
+            });
+
+    });
+
+    after(() => mongo.client.close());
 });
 
 
