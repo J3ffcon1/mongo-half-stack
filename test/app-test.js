@@ -18,10 +18,11 @@ describe('Mongo testing', () => {
         developer: 'League of Geeks'
     };
 
-    // let night = {
-    //     name: 'Night in the Woods',
-    //     developer: 'Secret Lab'
-    // };
+    let night = {
+        name: 'Night in the Woods',
+        developer: 'Secret Lab'
+    };
+
     it('saves a video game', () => {
         return chai.request(app)
             .post('/videogames')
@@ -38,6 +39,20 @@ describe('Mongo testing', () => {
             .get(`/videogames/${armello._id}`)
             .then(({ body }) => {
                 assert.deepEqual(body, armello);
+            });
+    });
+
+    it('gets all videogames', () => {
+        return chai.request(app)
+            .post('/videogames')
+            .send(night)
+            .then(({ body }) => {
+                night = body;
+                return chai.request(app)
+                    .get('/videogames')
+                    .then(({ body }) => {
+                        assert.deepEqual(body, [armello, night]);
+                    });
             });
     });
 
