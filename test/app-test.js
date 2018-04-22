@@ -33,6 +33,14 @@ describe('Mongo testing', () => {
             });
     });
 
+    it('gets a video game', () => {
+        return chai.request(app)
+            .get(`/videogames/${armello._id}`)
+            .then(({ body }) => {
+                assert.deepEqual(body, armello);
+            });
+    });
+
 
 
 }); 
