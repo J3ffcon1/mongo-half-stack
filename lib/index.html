@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mongo Half-stack lab</title>
+</head>
+
+<body>
+    <ul id="Videogames I'm playing"></ul>
+    <script>
+        fetch('/videogames')
+            .then(response => response.json())
+            .then(videogames => {
+                const ul = document.getElementById('videogames');
+                videogames.forEach(videogames => {
+                    const li = document.createElement('li');
+                    ul.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html
